@@ -1,6 +1,14 @@
 #include <iostream>
 using namespace std;
-
+class Animal
+{
+private :
+    int food;
+    int weight;
+}
+public :
+    void set_animal(int )
+}
 class Animal
 {
 private:
