@@ -17,7 +17,7 @@ public:
 
 private:
     void Aging();
-    void Growign();
+    void Growing();
     
 };
 
@@ -32,8 +32,49 @@ char* Human::GetName()
 }
 
 void Human::AskName(Human other_person){
-    std::cout  << GetName() << ":" << "Hi, What_is_your_name?" << endl;
+    std::cout  << GetName() << ":" << "Hi, What_is_your_name?" << std::endl;
     other_person.How_old_are_you();
-    
+    other_person.How_old_are_you();
 }
 
+void Human::What_is_your_name(){
+    std::cout << GetName() << " : " << "Hello, I am" << GetName() << std::endl;
+}
+void Human::How_old_are_you(){
+    std::cout << GetName() << " : " << "I am " << GetAge() << "." << std::endl;
+}
+
+
+Human::Human()
+{
+    age = -1;
+    height = 0.0;
+    name = "";
+}
+
+Human::Human(int Age, double Height, char *Name)
+{
+    age = Age;
+    height = Height;
+    name = Name;
+}
+
+void Human::Aging()
+{
+    age++;
+}
+coid Human::Growing()
+{
+    height += 0.5;
+}
+
+int main(){
+    Human gjhong(20, 180, "Hong, Gil Dong");
+    Human yhkim(20, 160, "Kim, Young Hee");
+    
+    std::cout << "Greeting" << std::endl;
+    gjhong.AskName(yhkim);
+    yhkim.AskName(gjhong);
+    gjhong.AskAge(yhkim);
+    yhkim.AskAge(gjhong);
+}
