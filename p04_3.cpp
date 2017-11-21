@@ -34,7 +34,7 @@ private :
     int position;
     
 public:
-    NameCard(char * name, char * company, char * phone, int pos)
+    NameCard(char *name, char *company, char *phone, int pos)
         : position(pos)
         
     {
@@ -44,6 +44,16 @@ public:
         strcpy(this->name, name);
         strcpy(this->company, company);
         strcpy(this->phone, phone);
+    }
+    NameCard(const NameCard & ref) : position(ref.position)
+    {
+        name = new char[strlen(ref.name) + 1];
+        company = new char[strlen(ref.company) + 1];
+        phone = new char[strlen(ref.phone)+1];
+        strcpy(name, ref.name);
+        strcpy(company, ref.company);
+        strcpy(phone, ref.phone);
+        
     }
     void ShowNameCardInfo()
     {
@@ -65,11 +75,16 @@ public:
 int main(void)
 {
     NameCard manClerk("Lee", "ABCEng", "010-1111-2222", COMP_POS::CLERK);
+    NameCard copy1 = manClerk;
     NameCard manSENIOR("Hong", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
-    NameCard manAssist("Kim", "SoGoodComp", "010-5555-6666", COMP_POS::ASSIST);
-    manClerk.ShowNameCardInfo();
-    manSENIOR.ShowNameCardInfo();
-    manAssist.ShowNameCardInfo();
+    NameCard copy2 = manSENIOR;
+    
+    //NameCard manAssist("Kim", "SoGoodComp", "010-5555-6666", COMP_POS::ASSIST);
+    //manClerk.ShowNameCardInfo();
+    //manSENIOR.ShowNameCardInfo();
+    //manAssist.ShowNameCardInfo();
+    copy1.ShowNameCardInfo();
+    copy2.ShowNameCardInfo();
     return 0;
     
 }
