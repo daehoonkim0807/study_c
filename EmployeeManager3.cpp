@@ -60,7 +60,31 @@ public :
         ShowYourName();
         cout << "salary: " << GetPay() << endl << endl;
     }
-}
+};
+
+class SalesWorker : public PermanentWorker
+{
+private : 
+    int salesResults; // 월 판매실적
+    double bounsRatio; // 상여금 비율
+public :
+    SalesWorker(char *name, int money, double ratio)
+        : PermanentWorker(name, money), salesResults(0), bonusRatio(ratio)
+    {}
+    void AddSalesResult(int value)
+    {
+        salesResults += value;
+    }
+    int GetPay() const
+    {
+    return PermanentWorker::GetPay() + (int)(salesResult * bonusRatio);
+    }
+    void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout << "salary: " << GetPay() <<  endl <<  endl;
+    }
+};
 
 
 class EmployeeHandler
@@ -101,4 +125,22 @@ int main(void)
     //정규직 등록
     handler.AddEmployee(new PermanentWorker("KIM", 1000));
     handler.AddEmployee(new PermanentWorker("LEE", 1500));
+    
+    //임시직 등록
+    TemporaryWorker * alba = new TemporaryWorker("Jung", 700);
+    alba -> AddWorkTime(5);
+    handler.AddEmployee(alba);
+    
+    //영업직 등록
+    SalesWorker * seller = new SalesWorker("Hong", 1000, 0.1);
+    seller -> AddSalesResult(7000);
+    handler.AddEmployee(seller);
+    
+    // 이번 달에 지불해야 할 급여의 정보
+    handler.ShowAllSalaryInfo();
+    
+    //이번 달에 지불해야 할 급여의 총합
+    handler.ShowTotalSalary();
+    return 0;
 }
+
