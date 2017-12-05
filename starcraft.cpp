@@ -49,7 +49,7 @@ void Marine::show_status()
 int main()
 {
 	Marine* marines [100];
-	marines[0] = new Marine(2,3);
+	marines[0] = new Marine(2,3); // new에 경우 객체를 동적으로 생성하면서와 동시에 자동으로 생성자도 호출해준다는 점입니다.
 	marines[1] = new Marine(3,5);
 	
 	marines[0] -> show_status();
@@ -59,10 +59,11 @@ int main()
 	
 	marines[0] -> be_attacked(marines[1] -> attack());
 	
-	marines[0] -> show_status();
+	marines[0] -> show_status(); // Marine 들의 포인터를 가리키는 배열이기 때문에 메서드를 호출할 때. 이 아니라 ->를 사용해줘야겠다. 
+	
 	marines[1] -> show_status();
 	
-	delete marines[0];
+	delete marines[0]; // 마지막으로 동적으로 할당한 메모리는 언제나 해제해 주어야 된다는 원칙에 따라 해줘야 한다.	
 	delete marines[1];
 }
 
