@@ -59,9 +59,12 @@ void printArray(int index[], int n)
 int main()
 {
 
-    int index[]={-2,3,45,12,9,0};
+    int index[]={-2,3,45,12,15,22,46,78,699,9,0};
 
     int n = sizeof(index)/sizeof(index[0]);
+    cout << "Unsorted array is \n";
+
+    printArray(index, n);
 
     heapSort(index, n);
 
