@@ -1,43 +1,35 @@
-#include <iostream>
+class Employee
+{
+	string name;
+	int age;
 
-class Box {
+	string position; // 직책 (이름)
+	int rank; // 순위 (값이 클 수록 높은 순위)
 
-public : 
-    static int objectCount;
-    
-    // Constructor definition
-    Box (double l = 2.0, double b = 2.0, double h = 2.0)
-    {
-        std::cout << "Constructor called"<< std::endl;
-        length = l;
-        breadth = b;
-        height = h;
-        // Increase every time ohject is created
-        objectCount++;
-    }
-    
-    double Volume() {
-        return length * breadth * height;
-    }
+public:
 
-    static int getCount() {
-        return objectCount;
-    }
-private :
-    double length;
-    double breadth;
-    double height;
+	Employee(string name, int age, string position, int rank) 
+		: name(name), age(age), position(position), rank(rank) {}
+
+	// 복사 생성자
+	Employee(const Employee& employee)
+	{
+		name = employee.name;
+		age = employee.age;
+		position = employee.position;
+		rank = employee.rank;
+	}
+
+	// 디폴트 생성자
+	Employee () {}
+
+	void print_info()
+	{
+		cout << name << " (" << position << " , " << age << ") ==> " << calculate_pay() << "만원" << endl;
+	}
+	int calculate_pay()
+	{
+		return 200 + rank * 50;
+	}
 };
 
-int Box::objectCount = 0;
-
-int main(int argc, const char * argv[]) {
-    std::cout << "Initial Stage Count: " << Box::getCount() << std::endl;
-    
-    Box Box1(3.3, 1.2, 1.5);
-    Box Box2(8.5, 6.0, 2.0);
-    
-    std::cout << "Final Stage Count : " <<Box::getCount() << std::endl;
-    return 0;
-    
-}
