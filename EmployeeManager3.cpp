@@ -16,6 +16,12 @@ public :
     {
         cout << "name : " << name << endl;
     }
+    virtual int GetPay() const
+    {
+        return 0;
+    }
+    virtual void ShowSalaryInfo() const
+    {}
 };
 
 class PermanentWorker : public Employee
